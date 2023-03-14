@@ -1,5 +1,9 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import './adaptive_button.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addNewTransaction;
@@ -45,6 +49,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return SingleChildScrollView(
       child: Card(
         elevation: 5,
@@ -53,7 +58,7 @@ class _NewTransactionState extends State<NewTransaction> {
             top: 10,
             left: 10,
             right: 10,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+            bottom: mediaQuery.viewInsets.bottom + 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,10 +104,8 @@ class _NewTransactionState extends State<NewTransaction> {
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: _selectDate,
-                      child: const Text("Choose Date"),
-                    ),
+                    AdaptiveButton(
+                        buttonText: "Choose Date", buttonHandeler: _selectDate),
                   ],
                 ),
               ),
